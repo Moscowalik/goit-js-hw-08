@@ -16,7 +16,7 @@ function onTimeUpdate(e) {
 }
 
 const saveTime = localStorage.getItem(localStorageKey);
-console.log(saveTime);
+
 if (saveTime) {
   player.setCurrentTime(saveTime);
 }
