@@ -11,12 +11,12 @@ formRef.addEventListener('input', throttle(onTextAreaInput, 500));
 populateFormOutput();
 
 function onTextAreaInput(e) {
-  const data = {
+  const inputData = {
     email: email.value,
     message: message.value,
   };
 
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(inputData));
 }
 
 function onFormSubmit(e) {
