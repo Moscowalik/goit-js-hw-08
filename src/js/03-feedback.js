@@ -17,8 +17,9 @@ function onTextAreaInput(e) {
 
 function onFormSubmit(e) {
   e.preventDefault();
-  if (formRef.email.value && formRef.message.value === '') {
+  if (formRef.email.value === '' || formRef.message.value === '') {
     alert('Кроме тебя поля никто не заполнит(((');
+    return;
   }
 
   e.currentTarget.reset();
