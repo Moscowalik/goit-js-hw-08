@@ -10,11 +10,6 @@ player.on('play', function () {
   console.log('played the video!');
 });
 
-function onTimeUpdate(e) {
-  localStorage.setItem(localStorageKey, e.seconds);
-  console.log(`'Просмотрел видео' ${e.seconds}`);
-}
-
 const saveTime = localStorage.getItem(localStorageKey);
 
 if (saveTime) {
