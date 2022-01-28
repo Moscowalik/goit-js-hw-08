@@ -21,15 +21,26 @@ function onFormSubmit(e) {
     alert('Кроме тебя поля никто не заполнит(((');
     return;
   }
-
-  e.currentTarget.reset();
+  const dataSubmit = {
+    email: e.currentTarget.email.value,
+    massage: e.currentTarget.message.value,
+  };
+  console.log(dataSubmit);
   localStorage.removeItem(STORAGE_KEY);
-  console.log(formData);
+  e.currentTarget.reset();
 }
 
 function populateFormOutput() {
-  if (localStorage.getItem(STORAGE_KEY)) {
-    formRef.email.value = JSON.parse(localStorage.getItem(STORAGE_KEY)).email;
-    formRef.message.value = JSON.parse(localStorage.getItem(STORAGE_KEY)).message;
+  const populateForm = JSON.parse(localStorage.getItem(STORAGE_KEY));
+
+  if (!populateForm) {
+    return;
+  }
+
+  if (populateForm.email) {
+    formRef.email.value = populateForm.email;
+  }
+  if (populateForm.message) {
+    formRef.message.value = populateForm.message;
   }
 }
