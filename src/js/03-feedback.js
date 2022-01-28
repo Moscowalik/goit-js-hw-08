@@ -1,8 +1,9 @@
 import throttle from 'lodash.throttle';
 
 const formRef = document.querySelector('.feedback-form');
-const formData = {};
 const STORAGE_KEY = 'feedback-form-state';
+const email = formRef.email;
+const message = formRef.message;
 
 formRef.addEventListener('submit', onFormSubmit);
 formRef.addEventListener('input', throttle(onTextAreaInput, 500));
@@ -10,9 +11,12 @@ formRef.addEventListener('input', throttle(onTextAreaInput, 500));
 populateFormOutput();
 
 function onTextAreaInput(e) {
-  formData[e.target.name] = e.target.value;
+  const data = {
+    email: email.value,
+    message: message.value,
+  };
 
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
 function onFormSubmit(e) {
@@ -26,7 +30,7 @@ function onFormSubmit(e) {
     massage: e.currentTarget.message.value,
   };
   console.log(dataSubmit);
-  localStorage.removeItem(STORAGE_KEY);
+
   e.currentTarget.reset();
 }
 
